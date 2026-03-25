@@ -9,14 +9,16 @@ public class BillDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    Long ID;
 
+    @ManyToOne(optional = false)
     @JoinColumn(
         name = "id_bill", nullable = false,
         foreignKey = @ForeignKey(name = "fk_billDetail_bill",
         foreignKeyDefinition = "FOREIGN KEY (id_bill) REFERENCES Bill(id)"))
-    Bill Bill;
+    Bill bill;
 
+    @ManyToOne(optional = false)
     @JoinColumn(
         name = "id_product", nullable = false,
         foreignKey = @ForeignKey(name = "fk_billDetail_product",

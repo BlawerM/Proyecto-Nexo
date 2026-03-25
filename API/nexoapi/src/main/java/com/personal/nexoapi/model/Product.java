@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    Long ID;
 
     @ManyToOne(optional = false)
     @JoinColumn(
@@ -25,7 +25,7 @@ public class Product {
     DetailType detailType;
 
     @Column(length = 150)
-    String Description;
+    String description;
 
     @Column(nullable = false)
     int stock;

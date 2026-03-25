@@ -6,5 +6,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BillDetailsRepository extends JpaRepository<BillDetails, Long>{
-    List<BillDetails> FindByBillId (Long billId);
+    List<BillDetails> findByBill_ID (Long bill);
 }

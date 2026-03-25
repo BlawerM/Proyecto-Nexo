@@ -8,9 +8,8 @@ import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product, Long>{
     Optional<Product> findBySKU(String SKU);
-    List<Product> findByDetail(Long idDetail);
-    List<Product> findByDesign(Long idDesign);
-    List<Product> findByJewelry(Long idJewelry);
-    List<Product> findByBill (Long BillDetails);
-    List<Product> findByPriceRange(BigDecimal min, BigDecimal max);
+    List<Product> findByDetailType_ID(Long idDetail);
+    List<Product> findByDetailType_DesignType_ID(Long idDesign);
+    List<Product> findByJewelryType_ID(Long idJewelry);
+    List<Product> findByPrice(BigDecimal min, BigDecimal max);
 }
