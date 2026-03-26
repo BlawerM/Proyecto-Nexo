@@ -27,16 +27,33 @@ public class ProductService {
     public Product createProduct (Product product){
         Long detailTypeId = product.getDetailType().getID();
         Long jewerlyTypeId = product.getJewelryType().getID();
-
         DetailType detailType = detailTypeRepository.findById(detailTypeId)
         .orElseThrow(() -> new RuntimeException("El detalle no existe"));
         JewelryType jewelryType = jewelryTypeRepository.findById(jewerlyTypeId)
         .orElseThrow(() -> new RuntimeException("El tipo de bisutería no existe"));
-
-        validateProductData(product);
         product.setDetailType(detailType);
         product.setJewelryType(jewelryType);
+        product.setSKU(SKUGenerator(product));
+        validateProductData(product);
         return productRepository.save(product);
+    }
+
+    private String SKUGenerator (Product product){
+        StringBuilder SKUBuilder = new StringBuilder();
+        String jewelryTypeCode = product.getJewelryType().getCode();
+        String designTypeCode = product.getDetailType().getDesignType().getCode();
+        String detailTypeCode = product.getDetailType().getCode();
+
+        SKUBuilder.append(jewelryTypeCode).append("-")
+                .append(designTypeCode).append("-")
+                .append(detailTypeCode).append("-");
+
+        String prefix = SKUBuilder.toString();
+
+        Long count = productRepository.countBySKUStartingWith(prefix);
+        Long nextCounter = count + 1;
+
+        return SKUBuilder.append(String.format("%02d", nextCounter)).toString();
     }
 
     public Optional<Product> findBySKU (String SKU){
