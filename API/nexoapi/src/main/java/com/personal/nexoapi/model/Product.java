@@ -4,13 +4,16 @@ import java.math.BigDecimal;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "Product",
+    uniqueConstraints = {
+        @UniqueConstraint(name ="uq_SKU", columnNames = {"SKU"})
+    })
+
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long ID;
 
-    //CAREFULLY REPLACED NAMES TO BE COHERENT WITH THE MODELS
     @ManyToOne(optional = false)
     @JoinColumn(
         name = "id_jewelry", nullable = false,

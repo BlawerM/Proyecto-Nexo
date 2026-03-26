@@ -2,17 +2,22 @@ package com.personal.nexoapi.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Detail_Type")
+@Table(name = "Detail_Type",
+    uniqueConstraints = {
+        @UniqueConstraint(name = "uq_name", columnNames = {"name"}),
+        @UniqueConstraint(name = "uq_code", columnNames = {"code"})
+        })
+
 public class DetailType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String code;
 
     @ManyToOne(optional = false)
