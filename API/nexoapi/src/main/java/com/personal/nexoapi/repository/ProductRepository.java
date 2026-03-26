@@ -13,5 +13,5 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
         //this works different because there's no direct connection between product and designType
     List<Product> findByDetailType_DesignType_ID(Long idDesign);
     List<Product> findByJewelryType_ID(Long idJewelry);
-    List<Product> findByPrice(BigDecimal min, BigDecimal max);
+    List<Product> findByPriceBetween(BigDecimal min, BigDecimal max);
 }
