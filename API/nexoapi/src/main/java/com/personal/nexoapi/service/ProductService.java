@@ -25,7 +25,17 @@ public class ProductService {
 	}
 
     public Product createProduct (Product product){
+        Long detailTypeId = product.getDetailType().getID();
+        Long jewerlyTypeId = product.getJewelryType().getID();
+
+        DetailType detailType = detailTypeRepository.findById(detailTypeId)
+        .orElseThrow(() -> new RuntimeException("El detalle no existe"));
+        JewelryType jewelryType = jewelryTypeRepository.findById(jewerlyTypeId)
+        .orElseThrow(() -> new RuntimeException("El tipo de bisutería no existe"));
+
         validateProductData(product);
+        product.setDetailType(detailType);
+        product.setJewelryType(jewelryType);
         return productRepository.save(product);
     }
 
