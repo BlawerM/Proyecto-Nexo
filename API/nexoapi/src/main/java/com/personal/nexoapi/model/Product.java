@@ -38,4 +38,59 @@ public class Product {
     @Column(length = 20)
     String SKU;
 
+	public Long getID() {
+		return ID;
+	}
+
+	public void setID(Long iD) {
+		ID = iD;
+	}
+
+	public JewelryType getJewelryType() {
+		return jewelryType;
+	}
+
+	public void setJewelryType(JewelryType jewelryType) {
+		this.jewelryType = jewelryType;
+	}
+
+	public DetailType getDetailType() {
+		return detailType;
+	}
+
+	public void setDetailType(DetailType detailType) {
+		this.detailType = detailType;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public BigDecimal getPrice() {
+		return price;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public String getSKU() {
+		return SKU;
+	}
+
+	public void setSKU(String sKU) {
+		SKU = sKU;
+	}
 }

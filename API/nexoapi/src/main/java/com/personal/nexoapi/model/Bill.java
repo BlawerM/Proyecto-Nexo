@@ -19,4 +19,28 @@ public class Bill {
 
     @Column(name = "price", precision = 12, scale = 2, nullable = false)
     BigDecimal total;
+
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long iD) {
+        ID = iD;
+    }
+
+    public OffsetDateTime getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(OffsetDateTime issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
 }

@@ -37,4 +37,60 @@ public class BillDetails {
     @Column(name = "subtotal", precision = 12, scale = 2, nullable = false)
     BigDecimal subtotal;
 
+	public Long getID() {
+		return ID;
+	}
+
+	public void setID(Long iD) {
+		ID = iD;
+	}
+
+	public Bill getBill() {
+		return bill;
+	}
+
+	public void setBill(Bill bill) {
+		this.bill = bill;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public String getSKU() {
+		return SKU;
+	}
+
+	public void setSKU(String sKU) {
+		SKU = sKU;
+	}
+
+	public int getCuantity() {
+		return cuantity;
+	}
+
+	public void setCuantity(int cuantity) {
+		this.cuantity = cuantity;
+	}
+
+	public BigDecimal getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(BigDecimal unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	public BigDecimal getSubtotal() {
+		return subtotal;
+	}
+
+	public void setSubtotal(BigDecimal subtotal) {
+		this.subtotal = subtotal;
+	}
+
 }

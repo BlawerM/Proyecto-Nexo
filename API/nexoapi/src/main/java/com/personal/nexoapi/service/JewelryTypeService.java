@@ -13,6 +13,9 @@ public class JewelryTypeService {
         this.jewelryTypeRepository = jewelryTypeRepository;
     }
     
+    public JewelryType createJewelryType (JewelryType JewelryType){
+        return null;
+    }
 
 //Create
 //List

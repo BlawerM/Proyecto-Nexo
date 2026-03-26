@@ -21,4 +21,37 @@ public class DetailType {
         foreignKey = @ForeignKey(name = "fk_detail_design",
         foreignKeyDefinition = "FOREIGN KEY (id_design) REFERENCES Design_Type(id) ON DELETE CASCADE"))
         private DesignType designType;
+
+    public Long getID() {
+        return ID;
+    }
+
+    public void setID(Long iD) {
+        ID = iD;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public DesignType getDesignType() {
+        return designType;
+    }
+
+    public void setDesignType(DesignType designType) {
+        this.designType = designType;
+    }
+
 }
