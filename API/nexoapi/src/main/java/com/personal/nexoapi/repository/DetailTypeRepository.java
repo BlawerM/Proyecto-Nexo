@@ -8,5 +8,6 @@ import java.util.List;
 public interface DetailTypeRepository extends JpaRepository<DetailType, Long>{
     Optional<DetailType> findByName (String name);
     Optional<DetailType> findByCode (String code);
+    //JPA reads the name as: findBy, tablename
     List<DetailType> findByDesignType (Long DesignId);
 }

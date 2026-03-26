@@ -39,12 +39,22 @@
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 
-        <!-- SQLSERVER FALLA ASÍ QUE CAMBIO A POSTGRES -->
-		<!-- <dependency>
+<!-- DEPENDENCIAS PARA BASES DE DATOS -->
+        <!-- SQLSERVER-->
+		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<scope>runtime</scope>
-		</dependency> -->
+		</dependency>
+
+        <!-- PostgreSQL -->
+        <!-- <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.2</version>
+            <scope>runtime</scope>
+        </dependency> -->
+<!-- FIN DEPENDENCIAS PARA BASES DE DATOS -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -83,13 +93,6 @@
 			<version>0.11.5</version>
 			<scope>runtime</scope>
 		</dependency> -->
-
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.7.2</version>
-            <scope>runtime</scope>
-        </dependency>
 
 	</dependencies>
 

@@ -2,7 +2,7 @@ package com.personal.nexoapi.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Jewerly_Type")
+@Table(name = "Jewelry_Type")
 public class JewelryType {
 
     @Id

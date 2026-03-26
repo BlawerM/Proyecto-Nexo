@@ -10,10 +10,11 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long ID;
 
+    //CAREFULLY REPLACED NAMES TO BE COHERENT WITH THE MODELS
     @ManyToOne(optional = false)
     @JoinColumn(
         name = "id_jewelry", nullable = false,
-        foreignKey = @ForeignKey(name = "fk_product_design",
+        foreignKey = @ForeignKey(name = "fk_product_jewelry",
         foreignKeyDefinition = "FOREIGN KEY (id_jewelry) REFERENCES Jewelry_Type(id)"))
     JewelryType jewelryType;
 
