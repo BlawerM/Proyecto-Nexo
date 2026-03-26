@@ -1,4 +1,5 @@
 package com.personal.nexoapi.service;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.personal.nexoapi.model.DesignType;
@@ -16,7 +17,18 @@ public class DesignTypeService {
 	}
 
     public DesignType createDesignType(DesignType designType){
-        return designTypeRepository.save(designType);
+        try {
+            return designTypeRepository.save(designType);
+        } catch (DataIntegrityViolationException e) {
+            String error = e.getMostSpecificCause().getMessage();
+            if (error.contains("uq_name")) {
+                throw new RuntimeException("El tipo de diseño " + designType.getName() + " ya existe.");
+            }
+            if (error.contains("uq_code")) {
+                throw new RuntimeException("El código " + designType.getCode() + " ya existe.");
+            }
+            throw new RuntimeException("Error en la base de datos: " + error);
+        }
     }
 
     public List<DesignType> findAll (){

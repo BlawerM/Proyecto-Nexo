@@ -1,7 +1,8 @@
 package com.personal.nexoapi.service;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.personal.nexoapi.model.DesignType;
+
 import com.personal.nexoapi.model.JewelryType;
 import com.personal.nexoapi.repository.JewelryTypeRepository;
 
@@ -18,7 +19,18 @@ public class JewelryTypeService {
     }
     
     public JewelryType createJewelryType (JewelryType jewelryType){
-        return jewelryTypeRepository.save(jewelryType);
+        try {
+            return jewelryTypeRepository.save(jewelryType);
+        } catch (DataIntegrityViolationException e) {
+            String error = e.getMostSpecificCause().getMessage();
+            if (error.contains("uq_name")) {
+                throw new RuntimeException("El tipo de joyería " + jewelryType.getName() + " ya existe.");
+            }
+            if (error.contains("uq_code")) {
+                throw new RuntimeException("El código " + jewelryType.getCode() + " ya existe.");
+            }
+            throw new RuntimeException("Error en la base de datos: " + error);
+        }
     }
 
     public List<JewelryType> findAll(){

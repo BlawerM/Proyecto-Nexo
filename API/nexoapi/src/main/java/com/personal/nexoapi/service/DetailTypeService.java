@@ -1,9 +1,8 @@
 package com.personal.nexoapi.service;
-import org.hibernate.sql.Update;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.personal.nexoapi.model.DetailType;
-import com.personal.nexoapi.model.JewelryType;
 import com.personal.nexoapi.repository.DetailTypeRepository;
 import com.personal.nexoapi.model.DesignType;
 import com.personal.nexoapi.repository.DesignTypeRepository;
@@ -19,15 +18,26 @@ public class DetailTypeService {
     public DetailType createDetailType (DetailType detailType){
         Long designTypeId = detailType.getDesignType().getID();
 
-        DesignType designType = designTypeRepository.findById(designTypeId)
-        .orElseThrow(() -> new RuntimeException("Country not found"));
+        try {
+            DesignType designType = designTypeRepository.findById(designTypeId)
+            .orElseThrow(() -> new RuntimeException("El diseño no existe"));
 
-        if (detailTypeRepository.existsByNameandDesign_ID(detailType.getName(), designTypeId)) {
-            throw new RuntimeException("Ya existe este tipo de detalle en el diseño actual");
+            if (detailTypeRepository.existsByNameandDesign_ID(detailType.getName(), designTypeId)) {
+                throw new RuntimeException("Ya existe este tipo de detalle en el diseño actual");
+            }
+            detailType.setDesignType(designType);
+            return detailTypeRepository.save(detailType);
+
+        } catch (DataIntegrityViolationException e) {
+            String error = e.getMostSpecificCause().getMessage();
+            if (error.contains("uq_name")) {
+                throw new RuntimeException("El tipo de detalle " + detailType.getName() + " ya existe.");
+            }
+            if (error.contains("uq_code")) {
+                throw new RuntimeException("El código " + detailType.getCode() + " ya existe.");
+            }
+            throw new RuntimeException("Error en la base de datos: " + error);
         }
-
-        detailType.setDesignType(designType);
-        return detailTypeRepository.save(detailType);
     }
 
     public List<DetailType> findAll(){
