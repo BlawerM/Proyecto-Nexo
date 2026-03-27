@@ -10,5 +10,5 @@ public interface DetailTypeRepository extends JpaRepository<DetailType, Long>{
     Optional<DetailType> findByCode (String code);
     //JPA reads the name as: findBy, tablename
     List<DetailType> findByDesignType (Long DesignId);
-    boolean existsByNameandDesign_ID(String name, Long DesignId);
+    boolean existsByNameAndDesignType_ID(String name, Long DesignId);
 }

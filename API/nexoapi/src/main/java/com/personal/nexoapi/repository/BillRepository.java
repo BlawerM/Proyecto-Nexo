@@ -5,5 +5,4 @@ import java.util.Optional;
 
 public interface BillRepository extends JpaRepository<Bill, Long>{
     
-
 }
