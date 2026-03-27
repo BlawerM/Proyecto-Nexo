@@ -43,6 +43,10 @@ public class DesignTypeService {
         return designTypeRepository.findByName(name);
     }
 
+    public Optional<DesignType> findByCode (String code){
+        return designTypeRepository.findByCode(code);
+    }
+
     public DesignType update (Long id, DesignType designTypeDetails){
         DesignType designType = designTypeRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("Diseño no encontrado con el id: " + id));

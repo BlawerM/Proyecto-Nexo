@@ -22,7 +22,7 @@ public class DetailTypeService {
             DesignType designType = designTypeRepository.findById(designTypeId)
             .orElseThrow(() -> new RuntimeException("El diseño no existe"));
 
-            if (detailTypeRepository.existsByNameandDesign_ID(detailType.getName(), designTypeId)) {
+            if (detailTypeRepository.existsByNameAndDesignType_ID(detailType.getName(), designTypeId)) {
                 throw new RuntimeException("Ya existe este tipo de detalle en el diseño actual");
             }
             detailType.setDesignType(designType);
@@ -52,12 +52,12 @@ public class DetailTypeService {
         return detailTypeRepository.findByName(name);
     }
 
-    public List<DetailType> findByDesignType (Long DesignId){
-        return detailTypeRepository.findByDesignType(DesignId);
-    }
-
     public Optional<DetailType> findByCode (String code){
         return detailTypeRepository.findByCode(code);
+    }
+
+    public List<DetailType> findByDesignType (Long DesignId){
+        return detailTypeRepository.findByDesignType(DesignId);
     }
 
     public DetailType update (Long id, DetailType detailTypeDetails){
